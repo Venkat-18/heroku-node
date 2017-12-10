@@ -6,7 +6,9 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "diskdb": "^0.1.17",
     "ejs": "~1.0.0",
-    "express": "~4.9.8"
+    "express": "~4.9.8",
+    "request": "^2.83.0"
   }
 }
