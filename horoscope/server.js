@@ -10,7 +10,13 @@ function Horoscope(app) {
     function callback(data) {
       res.json(data);
     }
-    main.getWeak(req.params.sign, callback);
+    main.getWeek(req.params.sign, callback);
+  });
+  app.get("/horoscope/month/:sign", function(req, res) {
+    function callback(data) {
+      res.json(data);
+    }
+    main.getMonth(req.params.sign, callback);
   });
 }
 

@@ -36,7 +36,7 @@ function getToday(sign, cb) {
   );
 }
 
-function getWeak(sign, cb) {
+function getWeek(sign, cb) {
   sign = sign.toLowerCase();
   var index = signs.indexOf(sign) + 1;
   if (index < 1) {
@@ -58,9 +58,33 @@ function getWeak(sign, cb) {
     }
   );
 }
-// test();
+
+function getMonth(sign, cb) {
+  sign = sign.toLowerCase();
+  var index = signs.indexOf(sign) + 1;
+  if (index < 1) {
+    cb({ result: "Invalid Sign" });
+    return;
+  }
+  request.get(
+    "http://astrology.dinakaran.com/tamilmathapalandetail.asp?aid=5&rid=" + index,
+    function(err, httpRes, body) {
+      var pattern = {
+        head: 'main-rasibalan"><h1><a href="#">(.*?)</a',
+        desc: 'img"/>(.*)<br><br><',
+        date: 'main-rasibalan"><h1><a href="#">.*</a></h1>(.*?)<p'
+      };
+      // console.log(body);
+      var result = utils.regexParser(pattern, body);
+      // result.date = new Date();
+      cb(result);
+    }
+  );
+}
+// getMonth("aries",console.log);
 
 module.exports = {
   getToday,
-  getWeak
+  getWeek,
+  getMonth
 };
