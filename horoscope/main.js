@@ -71,7 +71,7 @@ function getMonth(sign, cb) {
     function(err, httpRes, body) {
       var pattern = {
         head: 'main-rasibalan"><h1><a href="#">(.*?)</a',
-        desc: 'img"/>(.*)<br><br><',
+        desc: 'img"/>(.*?)<br><br><',
         date: 'main-rasibalan"><h1><a href="#">.*</a></h1>(.*?)<p'
       };
       // console.log(body);
