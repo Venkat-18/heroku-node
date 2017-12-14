@@ -29,8 +29,10 @@ function getToday(sign, cb) {
         desc: "p>(.*)</p"
       };
       // console.log(body);
+      var dt = new Date();
       var result = utils.regexParser(pattern, body);
-      result.date = new Date();
+      result.date =
+        dt.getDate() + "." + (dt.getMonth() + 1) + "." + dt.getUTCFullYear();
       cb(result);
     }
   );
@@ -53,6 +55,7 @@ function getWeek(sign, cb) {
       };
       // console.log(body);
       var result = utils.regexParser(pattern, body);
+      result.desc = result.desc.replace(/&nbsp;/g, " ");
       // result.date = new Date();
       cb(result);
     }
@@ -67,7 +70,8 @@ function getMonth(sign, cb) {
     return;
   }
   request.get(
-    "http://astrology.dinakaran.com/tamilmathapalandetail.asp?aid=5&rid=" + index,
+    "http://astrology.dinakaran.com/tamilmathapalandetail.asp?aid=5&rid=" +
+      index,
     function(err, httpRes, body) {
       var pattern = {
         head: 'main-rasibalan"><h1><a href="#">(.*?)</a',
@@ -76,6 +80,8 @@ function getMonth(sign, cb) {
       };
       // console.log(body);
       var result = utils.regexParser(pattern, body);
+      result.desc = result.desc.replace(/&nbsp;/g, " ");
+      result.desc = result.desc.replace(/<br>/g, "\n");
       // result.date = new Date();
       cb(result);
     }
