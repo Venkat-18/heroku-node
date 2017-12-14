@@ -18,7 +18,8 @@ var signs = [
 var request = {};
 request.get = function(url, fn) {
   var today = new Date().getDate();
-  var fName = "horoscope/data/" + encodeURIComponent(url) + "__" + today;
+  var fName =
+    "horoscope/data/" + encodeURIComponent(url) + "__" + today + ".dat";
   var filePresent = fs.existsSync(fName);
   if (filePresent) {
     var resp = fs.readFileSync(fName).toString();
@@ -31,7 +32,8 @@ request.get = function(url, fn) {
 
 function cache(url, resp) {
   var today = new Date().getDate();
-  var fName = "horoscope/data/" + encodeURIComponent(url) + "__" + today;
+  var fName =
+    "horoscope/data/" + encodeURIComponent(url) + "__" + today + ".dat";
   fs.writeFileSync(fName, resp);
 }
 
