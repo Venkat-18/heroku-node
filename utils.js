@@ -7,7 +7,7 @@ function regexParser(patternJson, content) {
     var reg = new RegExp(patternJson[i], "ig");
     // console.log(res, reg, patternJson, content);
     var res = reg.exec(content);
-    // console.log(res,content);
+    console.log(result);
     result[i] = res[1];
   });
   // console.log(result);

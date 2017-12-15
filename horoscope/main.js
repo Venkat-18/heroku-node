@@ -49,7 +49,7 @@ function getToday(sign, cb) {
     cache(url, body);
     var pattern = {
       head: "/>(.*)</h2",
-      desc: "p>(.*)</p"
+      desc: "p>(.*?)(<br></p|</p)"
     };
     // console.log(body);
     var dt = new Date();
@@ -73,7 +73,7 @@ function getWeek(sign, cb) {
     cache(url, body);
     var pattern = {
       head: 'main-rasibalan"><h1><a href="#">(.*?)</a',
-      desc: 'img"/>(.*)<br><br><',
+      desc: 'img"/>(.*?)(<br><br><|<br><font)',
       date: 'main-rasibalan"><h1><a href="#">.*</a></h1>(.*?)<p'
     };
     // console.log(body);
@@ -98,7 +98,7 @@ function getMonth(sign, cb) {
     cache(url, body);
     var pattern = {
       head: 'main-rasibalan"><h1><a href="#">(.*?)</a',
-      desc: 'img"/>(.*?)<br><br><',
+      desc: 'img"/>(.*?)(<br><br><|<br><font)',
       date: 'main-rasibalan"><h1><a href="#">.*</a></h1>(.*?)<p'
     };
     // console.log(body);
